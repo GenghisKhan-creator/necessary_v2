@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #0d5969;
+    --color-primary-dark: #083c47;
+    --color-primary-light: #106e80;
+    --color-secondary: #ff5722;
+    --color-neutral-bg: #0d5969;
+    --color-text-main: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.7);
+
+    --font-display: "Syncopate", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "Michroma", sans-serif;
+}
+
+@layer base {
+    html {
+        scroll-behavior: initial;
+    }
+
+    html.lenis {
+        height: auto;
+    }
+
+    .lenis.lenis-smooth {
+        scroll-behavior: auto;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+        overflow: hidden;
+    }
+
+    /* Global Global Professional Scrollbar */
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #051c22;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #ff5722;
+        border-radius: 0;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ffffff;
+    }
+
+    body {
+        @apply bg-neutral-bg text-text-main font-body antialiased overflow-x-hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display font-bold tracking-tight;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+
+    /* Responsive Typography Scale */
+    html {
+        font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
+    }
+}
+
+@layer utilities {
+    .clip-path-open {
+        clip-path: circle(150% at 100% 0);
+    }
+
+    .clip-path-closed {
+        clip-path: circle(0% at 90% 10%);
+    }
+
+    .animate-spin-slow {
+        animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Hide on very small screens */
+    @media (max-width: 350px) {
+        .mini-hidden {
+            display: none;
+        }
+    }
+}
+
+/* GSAP Hidden class to prevent FOUC (Flash of Unstyled Content) */
+.gsap-reveal {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Custom Scrollbar Utility for Menu */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 87, 34, 0.3);
+}
+
+.perspective-1000 {
+    perspective: 1000px;
+}
