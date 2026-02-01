@@ -4,9 +4,9 @@ import { Instagram, Linkedin, Twitter } from "lucide-react";
 
 const leaders = [
     {
-        name: "KWAME ASANTE",
+        name: "MULUMBA SONGSORE",
         role: "EXECUTIVE DIRECTOR",
-        bio: "Kwame believes that the Upper West Region's greatest resource is its people. He founded NAA to bridge the gap between inherent potential and tangible opportunity.",
+        bio: "Mulumba believes that the Upper West Region's greatest resource is its people. He founded NAA to bridge the gap between inherent potential and tangible opportunity.",
         image: "/images/leader_dir.jpg",
         manifesto: "SOVEREIGNTY IS AN INSIDE JOB."
     },
