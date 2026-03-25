@@ -13,6 +13,7 @@ import Leaders from "./pages/Leaders";
 import Newsroom from "./pages/Newsroom";
 import Timeline from "./pages/Timeline";
 import Dashboard from "./pages/Dashboard";
+import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 
 // ScrollToTop component to handle route changes with Lenis
@@ -91,6 +92,7 @@ function App() {
           <Route path="/news" element={<Newsroom />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Layout>
     </Router>

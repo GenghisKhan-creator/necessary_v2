@@ -18,7 +18,7 @@ const Mission = () => {
                     </div>
                     <div className="lg:pt-20">
                         <p className="text-white/60 font-body text-base md:text-lg leading-relaxed mb-10 max-w-xl">
-                            Necessary Aid began when a small group of friends visited a rural community and saw children studying by candlelight. They didn't have much but they promised to return. That promise grew into a movement, one focused on reaching where light rarely goes through education, clean water, and mentorship.
+                            Necessary Aid Alliance works to bridge the educational inequality gap in rural communities whilst empowering the girl child to make informed strategic life choices. By offering entrepreneurial training for women and support for vulnerable groups, we aim to break the cycle of endemic poverty and ensure self-reliance.
                         </p>
                         <button className="group flex items-center bg-secondary text-primary px-6 py-3 rounded-full font-body text-[13px] font-bold transition-all hover:bg-white shadow-xl">
                             Read The Full Story
