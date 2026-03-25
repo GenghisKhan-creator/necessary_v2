@@ -1,195 +1,96 @@
-import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import gsap from "gsap";
-
-const slides = [
-    {
-        title: "YOUTH",
-        subtitle: "LEADERS",
-        layout: "left",
-        image: "/images/youth_empowerment.jpg",
-        description: "BEYOND AID. TOWARDS SOVEREIGN GROWTH.",
-        meta: "01 / GENERATION_Z"
-    },
-    {
-        title: "GIRL CHILD",
-        subtitle: "EDUCATION",
-        layout: "right",
-        image: "/images/girl_edu.jpg",
-        description: "EVERY GIRL A LEADER. EVERY VILLAGE A UNIVERSE.",
-        meta: "02 / LITERACY_ACT"
-    },
-    {
-        title: "PROTECT",
-        subtitle: "DIGNITY",
-        layout: "bottom",
-        image: "/images/gbv.jpg",
-        description: "RESTORING DIGNITY. AMPLIFYING VOICES OF STRENGTH.",
-        meta: "03 / JUSTICE_HUB"
-    }
-];
+import React from "react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
-    const heroRef = useRef(null);
-    const [current, setCurrent] = useState(0);
-    const isAnimating = useRef(false);
-
-    const animateSlide = (direction) => {
-        if (isAnimating.current) return;
-        isAnimating.current = true;
-
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    isAnimating.current = false;
-                }
-            });
-
-            // Outgoing - more dramatic "un-reveal"
-            tl.to(".slide-content-item", {
-                opacity: 0,
-                x: direction === "next" ? -40 : 40,
-                filter: "blur(10px)",
-                duration: 0.8,
-                stagger: 0.05,
-                ease: "power2.in"
-            });
-
-            tl.to(".bg-image", {
-                scale: 1.1,
-                opacity: 0.3,
-                duration: 0.8,
-                ease: "power2.inOut"
-            }, "-=0.6");
-
-            // Change State
-            tl.add(() => {
-                setCurrent(prev => direction === "next"
-                    ? (prev + 1) % slides.length
-                    : (prev - 1 + slides.length) % slides.length
-                );
-            });
-
-            // Incoming
-            tl.fromTo(".bg-image",
-                { scale: 1.3, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 2, ease: "power4.out" }
-            );
-
-            tl.fromTo(".slide-content-item",
-                { opacity: 0, x: direction === "next" ? 60 : -60, filter: "blur(10px)" },
-                { opacity: 1, x: 0, filter: "blur(0px)", duration: 1.4, ease: "expo.out", stagger: 0.1 },
-                "-=1.5"
-            );
-        }, heroRef);
-    };
-
-    const next = () => animateSlide("next");
-    const prev = () => animateSlide("prev");
-
-    useEffect(() => {
-        const interval = setInterval(next, 10000);
-        return () => clearInterval(interval);
-    }, [current]);
-
-    const slide = slides[current];
-
-    // Helper for layout positioning
-    const getLayoutClasses = (layout) => {
-        switch (layout) {
-            case 'left': return "items-start text-left ml-4 md:ml-20";
-            case 'right': return "items-end text-right mr-4 md:mr-20";
-            case 'bottom': return "items-center text-center mt-auto mb-20 md:mb-32";
-            default: return "items-center text-center";
-        }
-    };
-
     return (
-        <section ref={heroRef} className="relative h-screen w-full bg-[#051c22] overflow-hidden flex items-center">
-            {/* Full Screen Background Image */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <img
-                    src={slide.image}
-                    alt="Background"
-                    className="bg-image w-full h-full object-cover brightness-[0.35] grayscale-[0.2]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-transparent to-black/40"></div>
-
-                {/* Decorative Grid Lines */}
-                <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-                    <div className="absolute top-1/4 w-full h-[1px] bg-white"></div>
-                    <div className="absolute top-2/3 w-full h-[1px] bg-white"></div>
-                    <div className="absolute left-1/3 h-full w-[1px] bg-white"></div>
-                    <div className="absolute right-1/4 h-full w-[1px] bg-white"></div>
-                </div>
+        <section className="pt-48 pb-20 px-6 md:px-12 bg-accent-sage min-h-screen flex flex-col items-center overflow-hidden">
+            {/* Tagline Pill */}
+            <div className="bg-white/60 backdrop-blur-md px-6 py-2 rounded-full mb-10 shadow-sm border border-black/5">
+                <span className="text-[11px] font-display font-bold text-primary tracking-widest uppercase">Building Brighter Paths</span>
             </div>
 
-            {/* Content Layer with dynamic placement */}
-            <div className={`relative z-10 w-full flex flex-col justify-center px-6 lg:px-24 h-full ${getLayoutClasses(slide.layout)}`}>
-
-                {/* Architectural Stamp */}
-                <div className="slide-content-item flex items-center gap-4 mb-4">
-                    <span className="font-mono text-[8px] md:text-[10px] tracking-[0.6em] text-secondary uppercase whitespace-nowrap">
-                        {slide.meta}
+            {/* Main Heading */}
+            <div className="max-w-5xl text-center mb-10">
+                <h1 className="text-6xl md:text-[6.5rem] font-display font-medium text-primary leading-[1] tracking-tight">
+                    Shine Hope Where It's <br />
+                    <span className="relative inline-flex items-center justify-center mx-4">
+                        <span className="relative z-10">Needed</span>
+                        {/* Frame effect for "Needed" */}
+                        <div className="absolute -inset-x-6 -inset-y-2 border-[3px] border-secondary rounded-sm opacity-80">
+                            <div className="absolute -top-[3px] -left-[3px] w-2 h-2 bg-secondary"></div>
+                            <div className="absolute -top-[3px] -right-[3px] w-2 h-2 bg-secondary"></div>
+                            <div className="absolute -bottom-[3px] -left-[3px] w-2 h-2 bg-secondary"></div>
+                            <div className="absolute -bottom-[3px] -right-[3px] w-2 h-2 bg-secondary"></div>
+                        </div>
                     </span>
-                    <div className="h-[1px] w-8 md:w-24 bg-secondary/30"></div>
-                </div>
-
-                <h1 className="slide-content-item text-6xl sm:text-8xl lg:text-[10rem] xl:text-[11rem] font-display text-white leading-[0.85] tracking-tighter mb-8 drop-shadow-2xl break-words">
-                    {slide.title} <br />
-                    <span className="text-secondary italic text-5xl sm:text-8xl lg:text-[10rem] xl:text-[11rem]">{slide.subtitle}</span>
+                    Most
                 </h1>
+            </div>
 
-                <p className="slide-content-item font-body text-[10px] md:text-sm text-white/50 tracking-[0.3em] max-w-lg uppercase leading-relaxed mb-12">
-                    {slide.description}
+            {/* Subtext */}
+            <div className="max-w-xl text-center mb-12">
+                <p className="text-primary/70 font-body text-base md:text-lg leading-relaxed">
+                    At Necessary Aid, we connect people with communities in need, turning compassion into tangible change.
                 </p>
+            </div>
 
-                <div className="slide-content-item flex flex-wrap gap-4 md:gap-8">
-                    <a href="/donate" className="group relative bg-secondary text-primary px-10 py-5 rounded-sm font-mono text-[10px] tracking-[0.3em] font-bold overflow-hidden">
-                        <span className="relative z-10">CONTRIBUTE</span>
-                        <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                    </a>
-                    <a href="/about" className="group relative border border-white/20 text-white px-10 py-5 rounded-sm font-mono text-[10px] tracking-[0.3em] overflow-hidden">
-                        <span className="relative z-10">THE ARCHIVE</span>
-                        <div className="absolute inset-0 bg-white/5 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                    </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-6 mb-24">
+                <button className="group flex items-center bg-primary text-secondary px-8 py-3.5 rounded-full font-body text-[13px] font-bold transition-all shadow-xl hover:translate-y-[-2px]">
+                    Donate Now
+                    <div className="ml-4 w-9 h-9 bg-secondary rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
+                        <ArrowRight className="w-5 h-5 text-primary" />
+                    </div>
+                </button>
+                <button className="group flex items-center bg-white border-2 border-primary/5 text-primary px-8 py-3.5 rounded-full font-body text-[13px] font-bold transition-all hover:bg-neutral-bg shadow-lg hover:translate-y-[-2px]">
+                    Volunteer
+                    <div className="ml-4 w-9 h-9 bg-primary/20 rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
+                        <ArrowRight className="w-5 h-5 text-primary" />
+                    </div>
+                </button>
+            </div>
+
+            {/* Image Grid with Thick Border */}
+            <div className="relative w-full max-w-6xl mx-auto mb-24">
+                <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-[3rem] -z-10 translate-y-8 h-full w-full"></div>
+                <div className="p-3 bg-secondary rounded-[2.5rem] shadow-2xl border-[12px] border-secondary overflow-hidden">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 rounded-[1.8rem] overflow-hidden">
+                        <div className="aspect-[4/3] md:aspect-[4/5] overflow-hidden">
+                            <img src="/images/mission_culture.jpg" className="w-full h-full object-cover" alt="Community" />
+                        </div>
+                        <div className="aspect-[4/3] md:aspect-[4/5] overflow-hidden">
+                            <img src="/images/girl_edu.jpg" className="w-full h-full object-cover" alt="Children" />
+                        </div>
+                        <div className="aspect-[4/3] md:aspect-[4/5] overflow-hidden border-secondary">
+                            <img src="/images/youth_empowerment.jpg" className="w-full h-full object-cover" alt="Outdoors" />
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Vertical Marker - Far Right */}
-            <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-10 opacity-30 mini-hidden">
-                <span className="font-mono text-[8px] tracking-[1em] text-white uppercase -rotate-90 origin-center whitespace-nowrap">
-                    UPPER WEST REGION / GHANA
-                </span>
-                <div className="h-40 w-[1px] bg-white/20"></div>
-            </div>
-
-            {/* UI Layer: Nav Controls (Slightly Offset) */}
-            <div className="absolute bottom-12 right-12 z-50 flex items-center gap-8">
-                <div className="flex gap-2 h-[2px]">
-                    {slides.map((_, i) => (
-                        <div key={i} className={`h-full transition-all duration-700 ${i === current ? "w-16 bg-secondary" : "w-4 bg-white/10"}`}></div>
-                    ))}
+            {/* Trusted By Section */}
+            <div className="w-full max-w-7xl mx-auto text-center">
+                <p className="text-primary/40 font-body text-[11px] font-bold uppercase tracking-[0.2em] mb-12">Supported by Changemakers Worldwide</p>
+                <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60">
+                     <LogoPlaceholder name="Logoipsum" />
+                     <LogoPlaceholder name="Logoipsum" />
+                     <LogoPlaceholder name="Logoipsum" />
+                     <LogoPlaceholder name="Logoipsum" />
+                     <LogoPlaceholder name="Logoipsum" />
                 </div>
-
-                <div className="flex gap-2">
-                    <button onClick={prev} className="w-12 h-12 flex items-center justify-center border border-white/5 hover:border-secondary text-white transition-all bg-black/20 backdrop-blur-md">
-                        <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button onClick={next} className="w-12 h-12 flex items-center justify-center border border-white/5 hover:border-secondary text-white transition-all bg-black/20 backdrop-blur-md">
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
-                </div>
-            </div>
-
-            {/* Location Coordinate - Left Bottom */}
-            <div className="absolute bottom-12 left-12 z-20 hidden md:block">
-                <p className="font-mono text-[8px] tracking-[0.5em] text-white/20 uppercase">
-                    Coord: 10.0601° N, 2.5099° W
-                </p>
             </div>
         </section>
     );
 };
 
+const LogoPlaceholder = ({ name }) => (
+    <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="w-4 h-4 rounded-sm border-2 border-primary/40"></div>
+        </div>
+        <span className="font-display text-sm font-bold text-primary/80 uppercase tracking-tighter">{name}</span>
+    </div>
+);
+
 export default Hero;
+

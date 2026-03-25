@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-primary">
+    <div className="min-h-screen bg-neutral-bg">
       <Header />
       {pathname === "/" && <Hero />}
       <div ref={contentRef}>

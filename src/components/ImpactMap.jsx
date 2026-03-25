@@ -21,8 +21,8 @@ const ImpactMap = () => {
     const revealRef = useGsapReveal({ y: 50 });
 
     return (
-        <section className="py-20 md:py-40 px-6 md:px-12 lg:px-24 bg-primary text-white overflow-hidden relative border-y border-white/5">
-            <div className="absolute inset-0 opacity-[0.02] pointer-events-none select-none">
+        <section className="py-24 md:py-48 px-6 md:px-12 lg:px-24 bg-white text-primary overflow-hidden relative border-y border-primary/5">
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none select-none text-primary">
                 <span className="text-[25vw] font-display leading-none whitespace-nowrap absolute -top-20 -left-20">GEOGRAPHY // IMPACT</span>
             </div>
 
@@ -30,52 +30,52 @@ const ImpactMap = () => {
                 <div className="space-y-12">
                     <div>
                         <div className="flex items-center gap-4 mb-8">
-                            <div className="h-[1px] w-12 bg-secondary"></div>
-                            <span className="font-mono text-xs tracking-[0.5em] text-secondary uppercase">Operational Footprint</span>
+                            <div className="h-[2px] w-12 bg-accent-green"></div>
+                            <span className="font-mono text-xs tracking-[0.5em] text-primary/60 font-bold uppercase">Operational Footprint</span>
                         </div>
-                        <h2 className="text-5xl md:text-8xl font-display leading-[0.85] tracking-tighter uppercase mb-6">
+                        <h2 className="text-5xl md:text-8xl font-display leading-[0.85] tracking-tighter uppercase mb-6 text-primary">
                             WHERE WE <br />
-                            <span className="text-white italic opacity-20">MANIFIEST.</span>
+                            <span className="text-secondary italic">MANIFEST.</span>
                         </h2>
-                        <p className="font-body text-white/40 leading-relaxed text-sm md:text-lg tracking-wide max-w-lg">
+                        <p className="font-body text-primary/60 leading-relaxed text-sm md:text-lg tracking-wide max-w-lg">
                             Necessary Aid Alliance is strategically rooted across all 11 districts of the Upper West Region. We don't just work in Wa; we work in the heart of our rural communities.
                         </p>
                     </div>
 
-                    <div className="space-y-8 bg-primary-dark p-8 md:p-12 border border-white/5 rounded-sm relative overflow-hidden group">
+                    <div className="space-y-8 bg-premium-cream p-8 md:p-12 border border-primary/5 rounded-[2rem] relative overflow-hidden group shadow-xl">
                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
-                            <Info className="w-6 h-6 text-secondary" />
+                            <Info className="w-6 h-6 text-accent-green" />
                         </div>
 
                         {hovered ? (
                             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                <span className="font-mono text-[10px] text-secondary tracking-[0.4em] uppercase">DISTRICT DATA / {hovered.id}</span>
-                                <h3 className="text-4xl md:text-5xl font-display tracking-tighter uppercase">{hovered.name}</h3>
+                                <span className="font-mono text-[10px] text-accent-green tracking-[0.4em] uppercase font-bold">DISTRICT DATA / {hovered.id}</span>
+                                <h3 className="text-4xl md:text-5xl font-display tracking-tighter uppercase text-primary">{hovered.name}</h3>
                                 <div className="space-y-2">
-                                    <p className="text-xs font-mono text-white/30 uppercase tracking-widest">Active Programs:</p>
-                                    <p className="text-lg md:text-xl font-display text-white italic">{hovered.programs}</p>
+                                    <p className="text-xs font-mono text-primary/30 uppercase tracking-widest font-bold">Active Programs:</p>
+                                    <p className="text-lg md:text-xl font-display text-primary italic font-bold">{hovered.programs}</p>
                                 </div>
-                                <div className="pt-6 border-t border-white/5 flex items-baseline gap-4">
+                                <div className="pt-6 border-t border-primary/5 flex items-baseline gap-4">
                                     <span className="text-4xl md:text-6xl font-display text-secondary">{hovered.impact.split(' ')[0]}</span>
-                                    <span className="text-xs font-mono text-white/40 uppercase tracking-widest">{hovered.impact.split(' ').slice(1).join(' ')}</span>
+                                    <span className="text-xs font-mono text-primary/40 uppercase tracking-widest font-bold">{hovered.impact.split(' ').slice(1).join(' ')}</span>
                                 </div>
                             </div>
                         ) : (
                             <div className="py-12 md:py-20 flex flex-col items-center justify-center text-center space-y-4">
-                                <MapPin className="w-12 h-12 text-secondary/30 mb-4 animate-bounce" />
-                                <p className="font-mono text-xs text-white/30 tracking-widest uppercase">Explore the points on the map <br /> to see regional impact data.</p>
+                                <MapPin className="w-12 h-12 text-accent-green/30 mb-4 animate-bounce" />
+                                <p className="font-mono text-xs text-primary/40 tracking-widest uppercase font-bold">Explore the points on the map <br /> to see regional impact data.</p>
                             </div>
                         )}
                     </div>
                 </div>
 
-                <div className="relative aspect-square w-full bg-primary-dark/30 rounded-full border border-white/5 flex items-center justify-center group">
+                <div className="relative aspect-square w-full bg-premium-cream rounded-full border border-primary/5 flex items-center justify-center group shadow-2xl">
                     {/* Stylized Abstract Map of Upper West */}
                     <svg viewBox="0 0 100 100" className="w-[90%] h-[90%] drop-shadow-2xl overflow-visible">
                         {/* Connecting Lines for Aesthetic */}
                         <g className="opacity-10 group-hover:opacity-20 transition-opacity">
                             {districts.map((d, i) => (
-                                districts[i + 1] && <line key={i} x1={d.x} y1={d.y} x2={districts[i + 1].x} y2={districts[i + 1].y} stroke="white" strokeWidth="0.1" />
+                                districts[i + 1] && <line key={i} x1={d.x} y1={d.y} x2={districts[i + 1].x} y2={districts[i + 1].y} stroke="var(--color-primary)" strokeWidth="0.1" />
                             ))}
                         </g>
 
@@ -90,19 +90,19 @@ const ImpactMap = () => {
                                     cx={d.x}
                                     cy={d.y}
                                     r={hovered?.id === d.id ? "1.5" : "0.8"}
-                                    className={`transition-all duration-500 fill-secondary ${hovered?.id === d.id ? "opacity-100" : "opacity-40"}`}
+                                    className={`transition-all duration-500 fill-accent-green ${hovered?.id === d.id ? "opacity-100" : "opacity-40"}`}
                                 />
                                 <circle
                                     cx={d.x}
                                     cy={d.y}
                                     r={hovered?.id === d.id ? "3" : "0"}
-                                    className="fill-secondary opacity-20 animate-pulse"
+                                    className="fill-accent-green opacity-20 animate-pulse"
                                 />
                                 {hovered?.id === d.id && (
                                     <text
                                         x={d.x + 2}
                                         y={d.y - 2}
-                                        className="fill-white font-display text-[2px] uppercase tracking-tighter pointer-events-none"
+                                        className="fill-primary font-display text-[2px] font-bold uppercase tracking-tighter pointer-events-none"
                                     >
                                         {d.name}
                                     </text>
